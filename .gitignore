@@ -1,0 +1,15 @@
+*.pdf
+*.aux
+*.log
+*.idx
+*.out
+*.toc
+*.spl
+*.gz
+*.dvi
+*.bbl
+*.blg
+*.ps
+*~
+.hidden
+
