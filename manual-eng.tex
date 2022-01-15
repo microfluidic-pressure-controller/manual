@@ -8,6 +8,8 @@
 \usepackage{ifthen}
 \usepackage{float}
 \usepackage{hyperref}
+%\usepackage{tabularx}
+\usepackage{mathtools}
 \hypersetup{colorlinks=true,linkcolor=blue,filecolor=magenta,urlcolor=blue}
 \urlstyle{same}
 
@@ -25,12 +27,12 @@
 \title{Microfluidic pressure controller}
 \author{
   Authors of the manual: \\
-  Ivan A. Denisov \\
-  Nikita A. Filatov \\
-  Anton S. Bukatin \\
-  % Лукьяненко Кирилл Андреевич \\
-  % Сорокин Владимир Викторович \\
-  % Якимов Антон Сергеевич \\
+  Ivan A. Denisov \\ % Иван Андреевич Денисов \\
+  Nikita A. Filatov \\ % Никита Алексеевич Филатов \\
+  Anton S. Bukatin \\ % Антон Сергеевич Букатин \\
+  Kirill A. Lukyanenko\\  % Лукьяненко Кирилл Андреевич \\
+  Vladimir V. Sorokin\\ % Сорокин Владимир Викторович \\
+  Anton S. Yakimov\\  % Якимов Антон Сергеевич \\  
 }
 
 
@@ -51,7 +53,9 @@
   \maketitle
 
   \begin{abstract}
-    The manual includes instructions to assemble, setup and develop open-source microfluidic pressure controller. Additionally, the main stages of assembly of the device are indicated.
+    The manual includes instructions to assemble, setup and develop the open-source microfluidic pressure controller. Additionally, the main stages of assembly of the device are indicated.
+    The study of the microfluidic pressure controller you can read in our paper in the magazine ... [insert when published]
+    The development is distributed under the GNU GPLv3 license.
   \end{abstract}
 
   \tableofcontents
@@ -65,7 +69,7 @@
     \label{intro}
     
 
-    Controller has functions:
+    The controller has the following functions:
     \begin{enumerate}
       \item manual and program control 4 pressure outputs   
       \item manual and program control 1 vacuum pump
@@ -79,7 +83,7 @@
     \begin{figure}[h!b]
 	  \begin{center}
 	  \includegraphics[width=\textwidth]{imgs/device.png}
-	  \caption{General view of the microfluidic controller with 5 displays, 4 positive pressure outputs and 1 vacuum pump output}
+	  \caption{The general view of the microfluidic controller with 5 displays, 4 positive pressure outputs and 1 vacuum pump output}
 	  \label{fig:device}
 	  \end{center}
     \end{figure}
@@ -93,8 +97,8 @@
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \newpage
-  \section{Setting up}
-  \label{setup}
+  \section{Software Installation and Description}
+  \label{soft-inst}
   
   \subsection{PC Software installation}
     \href{https://github.com/microfluidic-pressure-controller/software/releases}{Link to download the software application.}
@@ -197,10 +201,13 @@ The following are the functions of the buttons and other elements:
      
     \end{description}     
   
+  \newpage
+  \section{Hardware Adjustment}
+  \label{Hardware-Adjustment}
   \subsection{Calibration pressure sensors and adjustment ITV pressure rage}
     
     \textbf{Attention!} Further information for developers. Use it competently. Incorrect use can confuse instrument settings.\\
-    Calibration and adjustment ITV pressure rage of the instrument is performed in the Help menu of the application.\\
+    Calibration and adjustment an ITV pressure rage of the instrument is performed in the Help menu of the application.\\
     
     Please note that different ITV models (therefore different pressure ranges) can be built into a microfluidic pressure controller. For example, ITV0010 has 0.001 - 0.1 MPa output pressure range. ITV0030 has 0.001 - 0.5 MPa. Therefore, it must be observed that the range in the application (microcontroller firmware) matches the range of the installed ITV regulators.\\
     
@@ -259,10 +266,10 @@ ATTENTION! To calibrate the coefficients more accurately, you can use measuremen
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \newpage
-  \section{Usage manual} 
+  \section{Manual control of the device} 
   \label{usage}
 
-    Device can be controlled with physical panel on the front part of the device box with or without PC (personal computer) application.
+    The device can be controlled with the physical panel on the front part of the device box with or without a PC (personal computer) application.
 
   \begin{description}
     \item[\textbf{Control panel}] figure \ref{fig:device} 
@@ -281,13 +288,82 @@ To exit the selected screen, you just need to press the encoder 1 time.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \newpage
-  \section{Developing application}
+  \section{Instrument assembly}
     If you wish, you can assemble such a pressure controller yourself.\\
     All the designs, circuit diagrams, and software are published on  \href{https://github.com/microfluidic-pressure-controller}{GitHub} (https://github.com/microfluidic-pressure-controller).\\
-  
-    In brief, the following is a description of the main subassemblies.
+    In brief, the following is a description of the main subassemblies.\\
+    The main components of the device is shown in the Table I.\\
+    Table I.\\
+    \begin{tabular} { | p{6.5cm} | p{4.4cm} | p{0.7cm} | }
+      \hline
+      Description & Producer and country & Qty\\ \hline
+      ITV 0010 / ITV 0030 & SMC Pneumatics, Japan & \multicolumn{1}{c|}{4} \\ \hline
+      IITV00-04 manifold & SMC Pneumatics, Japan & \multicolumn{1}{c|}{1} \\ \hline
+      SMC KQB2E04-00 fitting & SMC Pneumatics, Japan & \multicolumn{1}{c|}{5} \\ \hline      
+      SMC KQB2E06-00 fitting & SMC Pneumatics, Japan & \multicolumn{1}{c|}{1} \\ \hline      
+      Development board Diymore STM32F4  & Fancy Module, China & \multicolumn{1}{c|}{1} \\ \hline      
+      MCP4725 digital-to-analog converter  & Microchip Technology, USA & \multicolumn{1}{c|}{4} \\ \hline      
+      MPX5050GP / MPX5700GP pressure sensors & Freescale Semiconductor, USA & \multicolumn{1}{c|}{4} \\ \hline 
+      MPX2200DP vacuum sensor  & Freescale Semiconductor, USA & \multicolumn{1}{c|}{1} \\ \hline  
+      0,96 inch OLED monochrome displays with SSD1306 driver & WinWin, China & \multicolumn{1}{c|}{5} \\ \hline  
+      Vacuum pump Kamoer KVP8 PLUS-KJ-S 24V 9W & Kamoer, China & \multicolumn{1}{c|}{1} \\ \hline  
+      Darlington transistor arrays Texas Instruments ULN2803A  & Texas Instruments, USA & \multicolumn{1}{c|}{1} \\ \hline  
+      Step-down switching regulator Texas Instruments LM2596T & Texas Instruments, USA & \multicolumn{1}{c|}{1} \\ \hline                                                 
+      Encoder PEC16-4220F-S0024 & Bourns, USA & \multicolumn{1}{c|}{1} \\ \hline          
+      Power supply MEAN WELL DR-15-24 15W 24V 630mA & Mean Well Enterprises Co, Taiwan & \multicolumn{1}{c|}{2} \\ \hline          
+      DC-DC step-down voltage regulator LM2596 & Advanced Tech, China & \multicolumn{1}{c|}{1} \\ \hline          
+      Linear regulator Texas Instruments LM7805 & Texas Instruments, USA & \multicolumn{1}{c|}{2} \\ \hline          
+      Modeling plastic Necuron 840 & NECUMER GmbH, Germany & \multicolumn{1}{c|}{0.5 $m^2$} \\ \hline  
+      Laser cutting service & LaserPro, Krasnoyarsk, Russia & \multicolumn{1}{c|}{1} \\ \hline
+    \end{tabular}
     
-    The figure \ref{fig:mainscheme} shows a general diagram of the functioning of a microfluidic pressure controller.
+   \newpage    
+    The following are node diagrams.\\ 
+    The thumbnail image of the microcontroller trace layout is shown in the figure \ref{fig:1Controller}.\\
+    The initial data see the \href{https://github.com/microfluidic-pressure-controller}{link} (https://github.com/microfluidic-pressure-controller).\\
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/1_Controller.pdf}
+	  \caption{Microcontroller trace layout.}
+	  \label{fig:1Controller}
+	  \end{center}
+    \end{figure}
+   
+   
+    The thumbnail image of power and control trace layout is shown in the figure \ref{fig:2PowerAndControl}.\\
+    The initial data see the \href{https://github.com/microfluidic-pressure-controller}{link} (https://github.com/microfluidic-pressure-controller).\\
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/2_PowerAndControl.pdf}
+	  \caption{Power and control trace layout.}
+	  \label{fig:2PowerAndControl}
+	  \end{center}
+    \end{figure}
+    
+    The thumbnail image of relay and sensors trace layout is shown in the figure \ref{fig:3RelaysAndSensors}.\\
+    The initial data see the \href{https://github.com/microfluidic-pressure-controller}{link} (https://github.com/microfluidic-pressure-controller).\\
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/3_RelaysAndSensors.pdf}
+	  \caption{Relays and sensor trace layout.}
+	  \label{fig:3RelaysAndSensors}
+	  \end{center}
+    \end{figure}
+    
+
+          
+    \newpage
+    For convenience, the 3D model of the controller PCB (printed circuit board) with elements is shown in the figure \ref{fig:device-structure3}.
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/device-structure3.pdf}
+	  \caption{The 3D model of the controller PCB with elements.}
+	  \label{fig:device-structure3}
+	  \end{center}
+    \end{figure}
+    
+    
+    The figure \ref{fig:mainscheme} shows a general diagram of the functioning of the microfluidic pressure controller.
     
     \begin{figure}[H]
 	  \begin{center}
@@ -297,38 +373,57 @@ To exit the selected screen, you just need to press the encoder 1 time.
 	  \end{center}
     \end{figure}
     
-    An internal overview of the components of the microfluidic pressure controller is shown in figure \ref{fig:device-structure}, \ref{fig:device-structure2}.
+    \newpage
+    Scheme for wiring diagram for pneumatic pipes, sensors, vacuum pump, etc. is shown in the figure \ref{fig:pneumatic-diagram}.\\
+    The initial data see the \href{https://github.com/microfluidic-pressure-controller}{link} (https://github.com/microfluidic-pressure-controller).\\
     \begin{figure}[H]
 	  \begin{center}
-	  \includegraphics[width=\textwidth]{imgs/device-structure.png}
-	  \caption{An internal overview of the components of the microfluidic pressure controller: (a) side view; (b) back view.}
-	  \label{fig:device-structure}
+	  \includegraphics[width=\textwidth]{imgs/pneumatic-diagram.png}
+	  \caption{Scheme for wiring diagram for pneumatic pipes, sensors, vacuum pump, etc.}
+	  \label{fig:pneumatic-diagram}
 	  \end{center}
-    \end{figure}
+    \end{figure}   
+    
+    The internal overview of the components of the microfluidic pressure controller is shown in figure \ref{fig:device-structure2}, \ref{fig:device-structure}.
     
     \begin{figure}[H]
 	  \begin{center}
 	  \includegraphics[width=\textwidth]{imgs/device-structure2.png}
-	  \caption{An internal overview of the components of the microfluidic pressure controller: top view.}
+	  \caption{The internal overview of the components of the microfluidic pressure controller: top view.}
 	  \label{fig:device-structure2}
 	  \end{center}
+    \end{figure}   
+    
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/device-structure.png}
+	  \caption{The internal overview of the components of the microfluidic pressure controller: (a) side view; (b) back view.}
+	  \label{fig:device-structure}
+	  \end{center}
     \end{figure}
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+   
+    \newpage
+    The maket of panel around OLED displays is shown in figure \ref{fig:panel-template}.\\
+    The way to prepare the panel: 1) print, 2) check the dimensions, 3) adjust the dimensions if not suitable and print again, 4) cut out windows for displays, 5) laminate on both sides 6) glue to the body.
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/panel-template.png}
+	  \caption{The maket of panel around OLED displays.}
+	  \label{fig:panel-template}
+	  \end{center}
+    \end{figure}
+
+    The upper part of the case is made by bending a metal sheet. The size information is at the \href{https://github.com/microfluidic-pressure-controller}{link} (https://github.com/microfluidic-pressure-controller).\\
+The figure \ref{fig:bodymetal} shows a 3D sketch of the result of metal processing.
+    \begin{figure}[H]
+	  \begin{center}
+	  \includegraphics[width=\textwidth]{imgs/body-metal.pdf}
+	  \caption{The maket of panel around OLED displays.}
+	  \label{fig:bodymetal}
+	  \end{center}
+    \end{figure}
+
+ 
   
   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
